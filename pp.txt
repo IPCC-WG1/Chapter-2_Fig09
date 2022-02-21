@@ -1,0 +1,8 @@
+#!/bin/ksh
+
+cdo yearmean -seldate,2000-01-02,2018-12-31 aeronet_10yrs.nc aeronet_2000-2018_10yrs.nc
+cdo trend aeronet_2000-2018_10yrs.nc 1.nc aeronettrend_10yrs.nc
+cdo timmean aeronet_2000-2018_10yrs.nc aeronetmean_10yrs.nc
+cdo div aeronettrend_10yrs.nc aeronetmean_10yrs.nc 1.nc
+cdo mulc,100. 1.nc aeronetreltrend_10yrs.nc
+#ncks -A -vxlon,ylat aeronet.nc aeronetreltrend_10yrs.nc
